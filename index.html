@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Link in any Important files this includes my style.css, Font awesome api and also a font from google fonts-->
+    <link rel="stylesheet" href="styles/style.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Oswald&display=swap" rel="stylesheet">
+    
+    <!-- Set What is written on the tab-->
+    <title>Landing Page</title>
+    
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigation Panel for the website-->
+    <nav>
+        <ul class="top-nav">
+            <!-- If the class = current then that is page currently on and can have different css applied to show such-->
+            <!-- The load-left and load-right are used as classes throughout to tell how the elements should appear on the page-->
+            <li class="current load-left"> <a>Home</a>   </li>
+            <li class="not-current load-right"> <a href="portfolio.html"> Portfolio </a> </li>
+        </ul>
+    </nav> 
+            <!-- Adds the video to the background whcih will be used for the parrallex effect-->
+            <div class="background-video load-fade">
+                <!-- class="video-bg"  tells html that it will be an image in the background-->
+                <video class="video-bg" autoplay muted loop>
+                    <source src="assets/background.mp4" type="video/mp4">
+                </video>
+            </div>
+
+
+        <div class="main-content">
+
+            <div class="load-up">
+                <!-- Place Text Under the Nav Panel-->
+                <h1 class="hellotext load-up"> Hello, I'm Ben.</h1>
+                <!-- hr is used here to craete a seperation from the h1 and the image-->
+                                <hr class="indexhr">
+                <!-- Loads up my image from  assets/me.jpg, the alt tag is used so if the image doesnt load or someone needs text-to-speech this is what will be used-->                
+                <span ><img src="assets/me.jpg" alt="profile-pic" class="profilepic"></span>
+            </div>
+            <div class="icons">
+                <ul class="iconlinks">
+                    <!-- Displays Icons from font awesome, Also adds so if clicked will send to an external website in this case github-->
+                    <li class="load-left"> <a href="https://github.com/tottendriloth"> <i class="fa fa-github fa-3x" aria-hidden="true"></i> </a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

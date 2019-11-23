@@ -1,0 +1,416 @@
+/* #00694B */
+:root{
+    /* --(var name)  allows me to create variables for use everywhere in the code, i set it in root so it is set for every element*/
+    /* topnavAnimTime and fadeintime are both used for the timings of any loadin animations*/
+    --topNavAnimTime: 1s ;
+    --fadeInTime: 1s;
+
+    /* fadeControls are how all the loading animations should play out e.g length delay and forwards (forwards means that whatever is set at 100% in aniamtion will stay after
+    animation ends) */
+    --fadeControls: var(--fadeInTime) var(--topNavAnimTime) forwards;
+    /* These set variables for all the load in types allowing for quick usage whenever a load in type is needed*/
+    --loadRightFade:  fade-in-right var(--fadeControls);
+    --loadLeftFade:  fade-in-left var(--fadeControls);
+    --loadUpFade:  fade-in-up var(--fadeControls);
+    --loadDownFade:  fade-in-down var(--fadeControls);
+    --loadFade: fade-in var(--fadeControls);
+    /* sideFadeDistance determines from how far away the animation should make it look like the elements are coming in from */
+    --sideFadeDistance: 1000px;
+
+    /* The following colors are my pallet chosen from https://www.materialpalette.com/ */
+    --accentcolor: #00BCD4;
+    --darkprimary: #E64A19;
+    --lightprimary: #FFCCBC;
+    --textprimary: #212121;
+    --primary: #ff5722;
+    --secondarytext: #757575;
+    --divider: #BDBDBD;
+
+    --accentbackground: rgba(0, 188, 212, 0.5);
+
+
+    /* Overflow-x means that whenever something needs to overflow the screen to the right instead of a scrollbar appearing the overflow will just not show
+    this is here to fix a bug where a scroll bar would appear at the bottom whenever i set an elements width to 100vh or 100%*/
+    overflow-x: hidden;
+}
+
+
+body{
+    /* margin and border here allows for everythign to go to the far right and laft of the screen without a margin or border*/
+    margin: 0%; 
+    border: 0%;
+}
+
+/* NAVIGATION */
+.top-nav{
+    /* list-style type: none; makes is so there are no bullet points next to the li elements*/
+    list-style-type: none;
+    /* use my primary color from my pallet as the background for the nav */
+    background: var(--primary);
+    /* Make it so the text aligns in the center */
+    text-align: center;
+    /* The load in anaimation for the nav section, whcih makes the bar slowly load in*/
+    animation: top-nav-slide var(--topNavAnimTime) 0.1s;
+    animation-fill-mode: forwards;
+    /* margin-top is used here to remove some white space that was appearing above the navigation bar*/
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+
+
+.top-nav li{
+    /* inline-block insures the nav elements appear next to each other on a line*/
+    display: inline-block;
+}
+
+
+.top-nav li:last-child{
+    /* This is used to make the text more central compared to thetext below */
+    margin-right: 80px;
+}
+
+.top-nav a{
+    /* Change the text to be Arial font with sans-serif backup, font size to 25px */
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    /* Padding spaces the text out a bit */
+    padding: 10px;
+    /* When the mouse goes over the elements because they are links the cursor becomes a pointer */
+    cursor: pointer;
+
+    /* the position is set to relative to fix a problem i was getting with the :before code below*/
+    position: relative;
+
+    text-decoration: none;
+    color: white;
+    float: left;
+
+}
+
+.top-nav a{
+    /* By applying a transform here it becomes the parent for any changes to position: fixed; children  */
+    transform: translateZ(0);
+}
+.top-nav a:before{
+    /* position is set to abs */
+    position: fixed;
+    /* sets the top to 5px and translate to the left 5px to propely align the :before content over the text below */
+    top:5px;
+    transform: translateX(-5px);
+
+    /* Some content is required inorder to use :before in this case it is just blank*/
+    content: '';
+
+    /* Makes the :before the accent color from the pallet*/
+    background: var(--accentcolor);
+
+    height: 10px;
+
+    /* Changes the opacity to 0.3 so the text below the :before is still readable */
+    opacity: 0.3;
+}
+
+.not-current a:hover:before, li a:focus:before
+{
+    /* On the event of hovering on a nav section that isnt to the current website run the Hover animation*/
+    opacity: 0;
+    animation: hoverAni .5s forwards;
+}
+
+.current a
+{
+    /* If the nav element is the current website then change the text color to represent such*/
+    color: var(--secondarytext);
+}
+
+/* The following 5 are all used to control the loading in animations
+Doing it this way allows fort me to add the classes to any elemnt in html and have them load in the same way and at the same time */
+.load-left{
+    opacity: 0;
+    animation: var(--loadLeftFade);
+}
+.load-right{
+    opacity: 0;
+    animation: var(--loadRightFade);
+}
+.load-up{
+    opacity: 0;
+    animation: var(--loadUpFade);
+}
+.load-down{
+    opacity: 0;
+    animation: var(--loadDownFade);
+}
+.load-fade{
+    opacity: 0;
+    animation: var(--loadFade);
+}
+
+
+/* BACKGROUND VIDEO */
+
+/* Makes the background image take up whole background z-idex allows for a parralex like affect on scroll */
+.background-video{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    z-index: -100;
+    margin: 0 auto;
+}
+/* Center the image in the screen*/
+.video-bg{
+    position: fixed;
+    z-index: -100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
+
+/* MAIN CONTENT */
+
+.main-content{
+    /* Make all content align in the center screen*/
+    text-align: center;
+    margin-bottom: 125px;
+    transform: translateY(-100px);
+    
+    animation: background-off-on var(--fadeInTime) var(--topNavAnimTime) forwards;
+}
+
+
+.main-content hr{
+    /* margin-top and margin-bottom aligns it in the right place */
+    margin-top: -2rem;
+    margin-bottom: 3rem;
+    /* the next two lines of code make it into a solid line with the color for dividing elements from my pallet*/
+    border: 0;
+    border-top: 1px solid var(--divider);
+    /* makes the line the right length */
+    width: 20rem;
+}
+
+
+/* PICTURE */
+.profilepic{
+    /* Any transition this over goes in :hover will take 1 second and ease*/
+    transition: all 1s ease;
+    /* border-radius rounds of the corners and so by settign it to 100% the image becomes circular */
+    border-radius: 100%;
+    /* by default the image is grayscale and little bit blurred */
+    filter: grayscale(1) blur(2px);
+
+    /* the size of the image is 250x250 making it a square liek this insures a perfect circle with border-radius*/
+    width: 250px;
+    height: 250px;
+
+}
+
+.profilepic:hover{
+    /* Whenever i hover on the image, it will de-blue and become not gray scale anymore,
+    at the same time the corners will un-round a little bit but not to complete points,
+    the image will also do a complete turn*/
+    filter: grayscale(0) blur(0);
+    border-radius: 25%;
+    transform: rotate(6.28rad);
+}
+
+/* ICONS */
+.iconlinks{
+    /* As before list-style-type makes it so there are no bullet points next to the li elemnts*/
+    list-style-type: none;
+    /* Margin-right aligns the icons properly under the image*/
+    margin-right: 2rem;
+}
+
+
+.iconlinks li{
+    /* the next two lines of code puts all icons next to each other with a spacing of 10px between them*/
+    display: inline-block;
+    padding: 10px;
+}
+
+.iconlinks a i{
+    /* all transitions will take .2s*/
+    transition: all .2s ease;
+}
+
+.iconlinks a:hover i{
+    /* Whenever an icon is hovered on it will grow in size a little bit*/
+    transform: scale(1.25);
+}
+
+
+
+/* Portfolio Code */
+/* Make the text at the top the right size and centralise it*/
+h1{
+    font-size: 3em;
+    font-weight: 400;
+    text-align: center;
+
+    font-family: 'Oswald', sans-serif;
+    color: var(--textprimary);
+}
+
+/* Make the break line look like a solid line*/
+.portfolio-container hr{
+    margin-top: 1rem;
+    border: 0;
+    border-top: 1px solid var(--divider);
+    margin: 4rem;
+}
+/* Setup grid display with auto-fitting columns for responsiveness*/
+.gallery{
+    display: grid;
+    
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    grid-auto-flow: dense;
+
+    margin-left: 4rem;
+}
+/* Make the images fit properly also add a little shadow to the boxes*/
+.item{
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transition: all .3s;
+    overflow: hidden;
+    position: relative;
+}
+/* When hover over the item the image seems to grow a little bit*/
+.image:hover{
+    transform: scale(1.1);
+}
+
+.image{
+    opacity: 1;
+    display: block;
+    width: 100%;
+    transition: all .3s;
+    height: auto;
+}
+
+
+
+/* MEDIA QUERIES */
+
+/* When resizing screen change nav fotn size to fix a problem where the nav would go all funny on mobile viewing*/
+@media (max-width: 500px){
+    .top-nav a{
+        font-size: 5vw;
+    }
+}
+
+
+/* KEYFRAMES */
+/* Handle the animation on the nav bar whenever a webpage is loaded */
+@keyframes top-nav-slide{
+    10%{
+        height: 2px;
+        width: 2px;
+    }
+    
+    44%, 70%{
+        height: 2px;
+        width: 100vw;
+    }
+
+    100%{
+        width: 100%;
+        height: 5em;
+    }
+
+}
+ /* the next 5 keyframes handle the fade in affect all elements go through after the nav bar is loaded*/
+@keyframes fade-in-right {
+    0%{
+        opacity: 0;
+        transform: translateX(var(--sideFadeDistance) );
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-left {
+    0%{
+        opacity: 0;
+        transform: translateX(calc(-1 * var(--sideFadeDistance)));
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-up {
+    0%{
+        opacity: 0;
+        transform: translateY(var(--sideFadeDistance));
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-down {
+    0%{
+        opacity: 0;
+        transform: translateY(calc(-1 * var(--sideFadeDistance)));
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+/* Make the background of an element fade in, needed else when other elements are afding in thsi is always there*/
+@keyframes background-off-on{
+    0%{
+        background: none;
+    }
+    100%{
+        background: var(--accentbackground);
+    }
+}
+
+
+
+/* When hovering on a nav item this animation plays out on the :before*/
+@keyframes hoverAni {
+    0%{
+        height: 0%;
+        width: 2px;
+        opacity: 1;
+    }
+    25%, 30%{
+        height: 80%;
+        width: 2px;
+        opacity: 1;
+    }
+    100%{
+        width: 90%;
+        height: 80%;
+        opacity: 0.3;
+
+    }
+
+}
+
+
+
