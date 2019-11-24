@@ -179,9 +179,11 @@ Doing it this way allows fort me to add the classes to any elemnt in html and ha
     /* Make all content align in the center screen*/
     text-align: center;
     margin-bottom: 125px;
-    transform: translateY(-100px);
+    transform: translateY(-250px);
     
     animation: background-off-on var(--fadeInTime) var(--topNavAnimTime) forwards;
+
+    min-width: 100%;;
 }
 
 
@@ -275,6 +277,7 @@ h1{
     grid-auto-flow: dense;
 
     margin-left: 4rem;
+    margin-right: 4rem
 }
 /* Make the images fit properly also add a little shadow to the boxes*/
 .item{
@@ -284,7 +287,9 @@ h1{
     transition: all .3s;
     overflow: hidden;
     position: relative;
+
 }
+
 /* When hover over the item the image seems to grow a little bit*/
 .image:hover{
     transform: scale(1.1);
